@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="index.css">
-    <body>
   </head>
-  <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
-<form hx-post="/form" hx-swap="settle outerHTML" hx-target="#mine"">
-  <div id="mine"  class="myform" style="position: absolute; padding-top: 30px;" id="myform">
-  <label class="form-control" >
-    <div class="label" >
-      <span class="label-text text-primary ">Your bio</span>
-    </div>
-    <input name="name" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px" placeholder="abc.exe"></input>
-    <input name="processName[]" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px" placeholder="abc.exe"></input>
-    <input name="processName[]" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px" placeholder="cmd.exe"></input>
-    <input name="processName[]" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px" placeholder="calc.exe"></input>
-  </label>
-  <button type="submit" style="margin-top: 10px; position: relative; left: 80%; height: 5px; width: 50px;"  class="btn btn-primary ">Send</button> 
-</div>
-</form>
-</body>
-  </html>
+
+  <body>
+    <script src="https://unpkg.com/htmx.org@1.9.11"
+      integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous">
+      </script>
+    <form hx-post="/form" hx-swap="settle outerHTML" hx-target="#mine"">
+  <div id=" mine" class="myform" style="position: absolute; padding-top: 30px;" id="myform">
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text text-primary ">Your bio</span>
+        </div>
+        <input name="name" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px"
+          placeholder="abc.exe"></input>
+        <input name="processName[]" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px"
+          placeholder="abc.exe"></input>
+        <input name="processName[]" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px"
+          placeholder="cmd.exe"></input>
+        <input name="processName[]" style="margin-left: 10px;" class="input input-bordered h-16" style="width: 50px"
+          placeholder="calc.exe"></input>
+      </label>
+      <button type="submit" style="margin-top: 10px; position: relative; left: 80%; height: 5px; width: 50px;"
+        class="btn btn-primary ">Send</button>
+      </div>
+    </form>
+  </body>
+
+</html>
