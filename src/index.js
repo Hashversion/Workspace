@@ -55,10 +55,16 @@ async function getProcessObject(name){
   return proc;
 }
 
+async function deleteProcessObject(name){
+  await Process.deleteOne({'processData': {$elemMatch: {"name": name}}}).then((result) => 
+  console.log(result)).catch((err) => console.log(err));
+}
+
 async function getProcessesByName(name){
   const proc = await getProcessObject(name); 
   return proc[0].processData[0].processList[0];
 }
+
 
 async function executeProcessList(procList){
   for (i = 0; i < procList.length; i++){
