@@ -31,7 +31,14 @@ app.post("/form", (req, res) =>{
 });
 
 app.get("/processes", (req, res) =>{
-  getProcessesByName("testing").then((result) => res.send(executeProcessList(result.processList[0]))).catch((err) => console.log(err));
+  if (req.query.name == null){
+    req.query.name = "testing";
+  }
+  else{
+    console.log(req.query.name)
+  }
+
+  getProcessesByName(req.query.name).then((result) => res.send(executeProcessList(result.processList[0]))).catch((err) => console.log(err));
 });
 
 
@@ -43,9 +50,14 @@ app.get("/index.css", (req, res) =>{
   res.sendFile(path.join(__dirname, 'index.css'))
 })
 
+async function getProcessObject(name){
+  const proc = await Process.find({ 'processData': { $elemMatch: { name: name } } }); 
+  return proc;
+}
+
 async function getProcessesByName(name){
   const proc = await Process.find({ 'processData': { $elemMatch: { name: name } } }).exec(); 
-  return proc[0].processData[0];
+  return getProcessObject(name)[0].processData[0];
 }
 
 async function executeProcessList(procList){
@@ -58,4 +70,10 @@ async function executeProcessList(procList){
       console.log(stdout);
   });
   }
+}
+
+async function updateProperty(property, oldName, newValue){
+  const procObject = await getProcessObject(oldName)[0];
+  procObject.processData[0][property] = newName;
+  procObject.save();
 }
