@@ -38,7 +38,7 @@ app.get("/processes", (req, res) =>{
     console.log(req.query.name)
   }
 
-  getProcessesByName(req.query.name).then((result) => res.send(executeProcessList(result.processList[0]))).catch((err) => console.log(err));
+  getProcessesByName(req.query.name).then((result) => res.send(executeProcessList(result))).catch((err) => console.log(err));
 });
 
 
@@ -56,8 +56,8 @@ async function getProcessObject(name){
 }
 
 async function getProcessesByName(name){
-  const proc = await Process.find({ 'processData': { $elemMatch: { name: name } } }).exec(); 
-  return getProcessObject(name)[0].processData[0];
+  const proc = await getProcessObject(name); 
+  return proc[0].processData[0].processList[0];
 }
 
 async function executeProcessList(procList){
@@ -72,8 +72,8 @@ async function executeProcessList(procList){
   }
 }
 
-async function updateProperty(property, oldName, newValue){
-  const procObject = await getProcessObject(oldName)[0];
-  procObject.processData[0][property] = newName;
-  procObject.save();
+async function updateProperty(name, property, newValue){
+  const procObject = await getProcessObject(name);
+  procObject[0].processData[0][property] = newValue;
+  procObject[0].save();
 }
